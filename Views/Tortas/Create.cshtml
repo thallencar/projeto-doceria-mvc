@@ -1,0 +1,69 @@
+﻿@model Doceria.Models.Torta
+
+
+<div class="d-flex flex-row gap-3 align-items-center">
+    <a asp-action="Index">
+        <i class="bi bi-arrow-left-circle" style="font-size: 2rem; color: black;"></i>
+    </a>
+    <h1>Cadastro de Item</h1>
+</div>
+
+<hr />
+<h4>Torta</h4>
+
+<div class="col-md-5">
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Nome"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Descricao"></label>
+            <input asp-for="Descricao" class="form-control" />
+            <span asp-validation-for="Descricao" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Preco"></label>
+            <input asp-for="Preco" class="form-control" type="number" step="0.01" />
+            <span asp-validation-for="Preco" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Data"></label>
+            <input asp-for="Data" class="form-control" />
+            <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Tipo"></label>
+            <select asp-for="Tipo" class="form-control form-select"
+                    asp-items="@Html.GetEnumSelectList<TipoTorta>()">
+                <option value="">Selecione o tipo de torta</option>
+            </select>
+            <span asp-validation-for="Tipo" class="text-danger"></span>
+        </div>
+
+        <div class="form-check form-switch d-flex align-items-center mt-3">
+            <input asp-for="IsVegana" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="width: 3rem; height: 1.7rem;" />
+            <label asp-for="IsVegana" class="form-check-label ms-2" for="flexSwitchCheckDefault" style="font-size: 1.1rem; margin-bottom: 0; margin-left: 0.5rem;"></label>
+        </div>
+
+
+
+        <div>
+            <input type="submit" class="btn btn-success mt-5 p-2" style="width: 8rem;" value="Cadastrar" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

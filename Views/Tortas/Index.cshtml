@@ -1,0 +1,60 @@
+﻿@model TortaListaViewModel
+
+
+<div class="d-flex flex-row justify-content-between">
+    <h1>Tortas</h1>
+    <div class="d-flex justify-content-end">
+    <a asp-action="Create">
+            
+            <button asp-action="Create" class="btn btn-success p-2 m-2">
+                <i class="bi bi-plus"></i>
+                Cadastrar Torta
+            </button>
+    </a>
+
+    <a asp-action="VisualizarEmLista">
+           
+        <button asp-action="VisualizarEmLista" class="btn btn-outline-secondary p-2 m-2">
+            <i class="bi bi-list"></i>
+            Visualizar em Lista
+        </button>
+    </a>
+    </div>
+</div>
+
+@if (Model.Lista.Count == 0)
+{
+<div class="alert alert-warning mt-3" role="alert">
+    Não há nenhuma torta cadastrada!
+</div>
+}
+<div class="container">
+    <div class="row">
+        @foreach (var torta in Model.Lista)
+        {
+
+            var markColor = torta.Tipo switch
+            {
+                TipoTorta => "border-left: 5px solid #1d4975", // Azul
+               
+            };
+
+            <div class="col-sm-4 col-md-3 mt-4">
+                <div class="card h-100" style="@markColor">
+                    <a asp-action="Details" asp-route-id="@torta.TordaId" class="text-black text-decoration-none">
+                        <div class="card-body">
+                            <h5 class="card-title">@torta.Nome</h5>
+                            <p class="card-text">@torta.Descricao</p>
+                            <div class="list-group">
+                                <span class="list-group-item">R$@torta.Preco</span>
+                                <span class="list-group-item">Vegana: @(torta.IsVegana ? "Sim" : "Não")</span>
+                            </div>
+                            <a asp-action="Edit" asp-route-id="@torta.TordaId" class="btn bg-transparent p-2 mt-3" style="width: 100%; border: 1px solid black" id="btn-edit">Editar</a>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

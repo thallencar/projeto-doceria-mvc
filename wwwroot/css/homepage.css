@@ -1,0 +1,17 @@
+﻿body {
+    background-image: url("../img/bg-home.png");
+    background-size: cover;
+   
+}
+
+.background-home {
+    position: relative;
+    z-index: 1; 
+}
+
+.footer-text {
+    background: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
